@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'home.dart';
+import 'app.dart';
 
 void main() {
-  runApp(const Home());
+  runApp(const PartTimeCommunity());
 }
