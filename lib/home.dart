@@ -9,10 +9,11 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
 
-      /* AppBar */
-      bottomNavigationBar: BottomBar(),
+      /** AppBar **/
+      bottomNavigationBar: BottomBar(home_selected: true,),
       floatingActionButton: FloatingButton(),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      /** AppBar **/
 
     );
   }
