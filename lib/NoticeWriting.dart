@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'commons/BottomAppBar.dart';
 
 class NoticeWriting extends StatelessWidget {
@@ -9,6 +8,11 @@ class NoticeWriting extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            icon: Icon(Icons.arrow_back,color: Colors.black,)),
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -57,7 +61,7 @@ class NoticeWriting extends StatelessWidget {
             children: [
               ListTile(
                   title: TextField(
-                    keyboardType: TextInputType.multiline,
+                keyboardType: TextInputType.multiline,
                 maxLines: null,
                 maxLength: 20,
                 cursorColor: Color(0xffFF6280),
@@ -70,8 +74,8 @@ class NoticeWriting extends StatelessWidget {
               Divider(),
               ListTile(
                   title: TextField(
-                    keyboardType: TextInputType.multiline,
-                maxLines:null,
+                keyboardType: TextInputType.multiline,
+                maxLines: null,
                 maxLength: 1000,
                 cursorColor: Color(0xffFF6280),
                 decoration: InputDecoration(

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:part_time_community/NoticeWriting.dart';
 
 class BottomBar extends StatelessWidget {
   final home_selected, message_selected, timeTable_selected, personal_selected;
@@ -13,11 +14,11 @@ class BottomBar extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          BottomBarIcon(icon: Icons.home, isSelected: home_selected,),
-          BottomBarIcon(icon: Icons.message, isSelected: message_selected,),
+          BottomBarIcon(icon: Icons.home_outlined, isSelected: home_selected,),
+          BottomBarIcon(icon: Icons.palette_outlined, isSelected: timeTable_selected,),
           const SizedBox(),
-          BottomBarIcon(icon: Icons.alarm, isSelected: timeTable_selected,),
-          BottomBarIcon(icon: Icons.person, isSelected: personal_selected,),
+          BottomBarIcon(icon: Icons.message_outlined, isSelected: message_selected,),
+          BottomBarIcon(icon: Icons.account_circle_outlined, isSelected: personal_selected,),
         ],
       ),
     );
