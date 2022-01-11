@@ -32,7 +32,7 @@ class BottomBarIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 15),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: IconButton(
         icon: isSelected ? Icon(icon, color: const Color(0xFFFF6281),) : Icon(icon),
         onPressed: () {},
@@ -49,7 +49,8 @@ class FloatingButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      child: const Icon(Icons.add),
+
+      child: const Icon(Icons.add,size: 30,),
       onPressed: () {},
       backgroundColor: const Color(0xFFFF6281),
     );
