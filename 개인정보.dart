@@ -135,6 +135,14 @@ class MyPage extends StatelessWidget {
                       color: Color(0xffFF6280)),
                 ),
               ),
+              TextButton(
+                  style: TextButton.styleFrom
+                    (padding: const EdgeInsets.all(20.0),
+                 primary: Colors.red,
+                  textStyle: const TextStyle(fontSize:15),),
+                  onPressed: () {},
+              child: const Text('로그아웃'),
+              ),
             ],
           ),
         ),
@@ -176,3 +184,4 @@ class MyPage extends StatelessWidget {
     );
   }
 }
+
