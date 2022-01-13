@@ -56,7 +56,7 @@ class _PersonalState extends State<Personal> {
                             ],
                           ),
                         ),
-                        Text('안녕하세요!',style: TextStyle(fontWeight: FontWeight.bold),)
+                        const Text('안녕하세요!',style: TextStyle(fontWeight: FontWeight.bold),)
                       ],
                     ),
                   ),

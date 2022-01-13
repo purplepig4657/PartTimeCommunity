@@ -224,9 +224,15 @@ class _FloatingButtonState extends State<FloatingButton> {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
-      child: const Icon(Icons.add),
+      child: widget.isSelected ? const Icon(Icons.cancel_outlined) :
+      const Icon(Icons.navigation),
       onPressed: () {
-        widget.startPrevious();
+        if(widget.isSelected == false) {
+          widget.startMap();
+          widget.isSelected = true;
+        } else {
+          widget.startPrevious();
+        }
       },
       backgroundColor: const Color(0xFFFF6281),
     );

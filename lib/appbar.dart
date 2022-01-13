@@ -72,6 +72,16 @@ class TitleNotifier extends StatelessWidget {
           '후기지도',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         );
+      case ApplicationBodyState.review:
+        return const Text(
+          '리뷰',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        );
+      case ApplicationBodyState.logout:
+        return const Text(
+          '로그인',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        );
       default:
         return const Text(
           'HOME',

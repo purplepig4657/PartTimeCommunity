@@ -78,6 +78,9 @@ class HomePage extends StatelessWidget {
                         startTimetable: appState.startTimetable,
                         startPersonal: appState.startPersonal,
                         startMap: appState.startMap,
+                        startReview: appState.startReview,
+                        reviewContent: appState.reviewContent,
+                        startWriteReview: appState.startWriteReview,
                         signOut: appState.signOut,
                 ),
           ),
@@ -134,19 +137,38 @@ class ApplicationState extends ChangeNotifier {
       notifyListeners();
     });
 
+    _reviewSubscription = FirebaseFirestore.instance
+        .collection('review')
+        .orderBy('timestamp', descending: true)
+        .snapshots()
+        .listen((snapshot) {
+      _reviewContent = [];
+      for (final document in snapshot.docs) {
+        _reviewContent.add(
+          ReviewContent(
+            content: document.data()['content'] as String,
+            date: document.data()['timestamp'] as int,
+            name: document.data()['name'] as String,
+            userId: document.data()['userId'] as String,
+          ),
+        );
+      }
+      notifyListeners();
+    });
+
     FirebaseAuth.instance.userChanges().listen((user) {
       if (user != null) {
         _loginState = ApplicationLoginState.loggedIn;
         _bodyState = ApplicationBodyState.home;
       } else {
-        _loginState = ApplicationLoginState.loggedOut;
+        _loginState = ApplicationLoginState.emailAddress;
         _bodyState = ApplicationBodyState.logout;
       }
       notifyListeners();
     });
   }
 
-  ApplicationLoginState _loginState = ApplicationLoginState.loggedOut;
+  ApplicationLoginState _loginState = ApplicationLoginState.emailAddress;
   ApplicationLoginState get loginState => _loginState;
 
   ApplicationBodyState _bodyState = ApplicationBodyState.logout;
@@ -160,6 +182,12 @@ class ApplicationState extends ChangeNotifier {
   List<BoardContent> get freeBoardContent => _freeBoardContent;
   BoardContent selectedContent =
       BoardContent(title: 'default', content: 'default', name: 'default', userId: 'default');
+
+  StreamSubscription<QuerySnapshot>? _reviewSubscription;
+  List<ReviewContent> _reviewContent = [];
+  List<ReviewContent> get reviewContent => _reviewContent;
+  ReviewContent selectedReviewContent =
+  ReviewContent(content: 'default', date: 0, name: 'default', userId: 'default');
 
   String? _email;
   String? get email => _email;
@@ -296,7 +324,22 @@ class ApplicationState extends ChangeNotifier {
 
   void startMap() {
     print("Map");
+    savePreviousState();
     _bodyState = ApplicationBodyState.map;
+    notifyListeners();
+  }
+
+  void startReview() {
+    print("Review");
+    savePreviousState();
+    _bodyState = ApplicationBodyState.review;
+    notifyListeners();
+  }
+
+  void startWriteReview() {
+    print("WriteReview");
+    savePreviousState();
+    _bodyState = ApplicationBodyState.write_review;
     notifyListeners();
   }
 }
@@ -306,6 +349,15 @@ class BoardContent {
     required this.name, required this.userId});
   final String title;
   final String content;
+  final String name;
+  final String userId;
+}
+
+class ReviewContent {
+  ReviewContent({required this.content, required this.date,
+    required this.name, required this.userId});
+  final String content;
+  final int date;
   final String name;
   final String userId;
 }

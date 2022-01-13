@@ -28,7 +28,7 @@ class _FreeBoardState extends State<FreeBoard> {
       ),
       Center(
         child: SizedBox(
-          width: 350,
+          width: 370,
           height: 460,
           child: Column(
             children: <Widget>[
@@ -36,7 +36,7 @@ class _FreeBoardState extends State<FreeBoard> {
                 //flex: 9,
                 child: Container(
                   decoration: BoxDecoration(
-                      borderRadius: BorderRadius.all(Radius.circular(40.0)),
+                      borderRadius: const BorderRadius.all(Radius.circular(40.0)),
                       border: Border.all(
                         width: 1,
                         color: Colors.black54,
@@ -65,7 +65,7 @@ class _FreeBoardState extends State<FreeBoard> {
       scrollDirection: Axis.vertical,
       shrinkWrap: true,
       padding: const EdgeInsets.all(16.0),
-      itemCount: widget.freeBoardContent.length*2,
+      itemCount: widget.freeBoardContent.length * 2,
       itemBuilder: (context, i) {
         if (i.isOdd) return const Divider();
         return _buildRow(i ~/ 2);

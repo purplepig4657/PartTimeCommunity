@@ -57,7 +57,7 @@ class _WriteContentState extends State<WriteContent> {
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
                       maxLength: 15,
-                      cursorColor: Color(0xffFF6280),
+                      cursorColor: const Color(0xffFF6280),
                       controller: _title_controller,
                       validator: (value) {
                         if (value == null || value.isEmpty) {
@@ -71,7 +71,7 @@ class _WriteContentState extends State<WriteContent> {
                           ),
                           hintText: '제목을 입력하세요.'),
                     )),
-                Divider(),
+                const Divider(),
                 ListTile(
                     title: TextFormField(
                       keyboardType: TextInputType.multiline,
@@ -113,7 +113,7 @@ class _WriteContentState extends State<WriteContent> {
             child: ElevatedButton(
               style: ButtonStyle(
                   backgroundColor:
-                  MaterialStateProperty.all<Color>(Color(0xffFF6280))),
+                  MaterialStateProperty.all<Color>(const Color(0xffFF6280))),
               onPressed: () {
                 addContentToFreeBoard(_title_controller.text, _content_controller.text);
                 widget.startPrevious();

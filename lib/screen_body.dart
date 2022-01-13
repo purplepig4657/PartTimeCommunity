@@ -4,6 +4,9 @@ import 'pages/free_board.dart';
 import 'pages/write_content.dart';
 import 'pages/read_content.dart';
 import 'pages/personal.dart';
+import 'pages/map.dart';
+import 'pages/review.dart';
+import 'pages/write_review.dart';
 
 
 enum ApplicationBodyState {
@@ -13,6 +16,8 @@ enum ApplicationBodyState {
   free_board,
   write_content,
   read_content,
+  write_review,
+  review,
   message,
   timetable,
   personal,
@@ -35,6 +40,9 @@ class ScreenBody extends StatelessWidget {
     required this.startTimetable,
     required this.startPersonal,
     required this.startMap,
+    required this.startReview,
+    required this.startWriteReview,
+    required this.reviewContent,
     required this.startPrevious,
     required this.signOut,
   });
@@ -53,6 +61,9 @@ class ScreenBody extends StatelessWidget {
   final void Function() startTimetable;
   final void Function() startPersonal;
   final void Function() startMap;
+  final void Function() startReview;
+  final void Function() startWriteReview;
+  final List<ReviewContent> reviewContent;
   final void Function() startPrevious;
   final void Function() signOut;
 
@@ -73,9 +84,12 @@ class ScreenBody extends StatelessWidget {
       case ApplicationBodyState.personal:
         return Personal(signOut: signOut,);
       case ApplicationBodyState.map:
-        return Row(
-          children: [Text("Map"),],
-        );
+        return Map(startReview: startReview,);
+      case ApplicationBodyState.review:
+        return Review(startWriteReview: startWriteReview,
+          reviewContent: reviewContent,);
+      case ApplicationBodyState.write_review:
+        return WriteReview(startPrevious: startPrevious,);
       case ApplicationBodyState.free_board:
         return FreeBoard(
           freeBoardContent: freeBoardContent,

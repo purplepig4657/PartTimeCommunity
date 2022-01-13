@@ -166,9 +166,12 @@ class _EmailFormState extends State<EmailForm> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Header('Sign in with email'),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.only(top:100.0,left:8,right:8),
+          child: const Header('Sign in with email'),
+        ),
+        Padding(
+          padding: const EdgeInsets.only(top:8,left:8,right:8),
           child: Form(
             key: _formKey,
             child: Column(
@@ -178,7 +181,11 @@ class _EmailFormState extends State<EmailForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: TextFormField(
                     controller: _controller,
+                    cursorColor: Color(0xffFF6280),
                     decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffFF6280)),
+                      ),
                       hintText: 'Enter your email',
                     ),
                     validator: (value) {
@@ -195,12 +202,13 @@ class _EmailFormState extends State<EmailForm> {
                     Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 16.0, horizontal: 30),
-                      child: StyledButton(
+                      child: ElevatedButton(
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             widget.callback(_controller.text);
                           }
                         },
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xffFF6280))),
                         child: const Text('NEXT'),
                       ),
                     ),
@@ -245,7 +253,10 @@ class _RegisterFormState extends State<RegisterForm> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Header('Create account'),
+        Padding(
+          padding: const EdgeInsets.only(top:100.0,left:8,right:8),
+          child: const Header('Create account'),
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
@@ -257,7 +268,12 @@ class _RegisterFormState extends State<RegisterForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: TextFormField(
                     controller: _emailController,
+                    cursorColor: Color(0xffFF6280),
                     decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffFF6280)),
+                      ),
+
                       hintText: 'Enter your email',
                     ),
                     validator: (value) {
@@ -272,7 +288,11 @@ class _RegisterFormState extends State<RegisterForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: TextFormField(
                     controller: _displayNameController,
+                    cursorColor: Color(0xffFF6280),
                     decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffFF6280)),
+                      ),
                       hintText: 'First & last name',
                     ),
                     validator: (value) {
@@ -287,7 +307,11 @@ class _RegisterFormState extends State<RegisterForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: TextFormField(
                     controller: _passwordController,
+                    cursorColor: Color(0xffFF6280),
                     decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffFF6280)),
+                      ),
                       hintText: 'Password',
                     ),
                     obscureText: true,
@@ -306,10 +330,10 @@ class _RegisterFormState extends State<RegisterForm> {
                     children: [
                       TextButton(
                         onPressed: widget.cancel,
-                        child: const Text('CANCEL'),
+                        child: const Text('CANCEL',style: TextStyle(color: Color(0xffFF6280)),),
                       ),
                       const SizedBox(width: 16),
-                      StyledButton(
+                      ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             widget.registerAccount(
@@ -318,7 +342,10 @@ class _RegisterFormState extends State<RegisterForm> {
                               _passwordController.text,
                             );
                           }
+
                         },
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Color(0xffFF6280))),
+
                         child: const Text('SAVE'),
                       ),
                       const SizedBox(width: 30),
@@ -360,7 +387,10 @@ class _PasswordFormState extends State<PasswordForm> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const Header('Sign in'),
+        const Padding(
+          padding: const EdgeInsets.only(top:100.0,left:8,right:8),
+          child: const Header('Sign in'),
+        ),
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Form(
@@ -372,7 +402,11 @@ class _PasswordFormState extends State<PasswordForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: TextFormField(
                     controller: _emailController,
+                    cursorColor: Color(0xffFF6280),
                     decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffFF6280)),
+                      ),
                       hintText: 'Enter your email',
                     ),
                     validator: (value) {
@@ -387,7 +421,11 @@ class _PasswordFormState extends State<PasswordForm> {
                   padding: const EdgeInsets.symmetric(horizontal: 24),
                   child: TextFormField(
                     controller: _passwordController,
+                    cursorColor: const Color(0xffFF6280),
                     decoration: const InputDecoration(
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Color(0xffFF6280)),
+                      ),
                       hintText: 'Password',
                     ),
                     obscureText: true,
@@ -405,7 +443,7 @@ class _PasswordFormState extends State<PasswordForm> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       const SizedBox(width: 16),
-                      StyledButton(
+                      ElevatedButton(
                         onPressed: () {
                           if (_formKey.currentState!.validate()) {
                             widget.login(
@@ -414,6 +452,8 @@ class _PasswordFormState extends State<PasswordForm> {
                             );
                           }
                         },
+                        style: ButtonStyle(backgroundColor: MaterialStateProperty.all(const Color(0xffFF6280))),
+
                         child: const Text('SIGN IN'),
                       ),
                       const SizedBox(width: 30),
