@@ -11,11 +11,13 @@ import 'screen_body.dart';
 import 'bottom_appbar.dart';
 import 'appbar.dart';
 import 'pages/authentication.dart';
+import 'pages/timetable.dart';
 import 'pages/free_board.dart';
 
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    DBHelper().initDB();
     return const MaterialApp(
       title: 'PartTimeCommunity',
       home: HomePage(),
@@ -76,6 +78,9 @@ class HomePage extends StatelessWidget {
                         startPrevious: appState.startPrevious,
                         startMessage: appState.startMessage,
                         startTimetable: appState.startTimetable,
+                        startEditTimeTable: appState.startEditTimeTable,
+                        selectedTimeTable: appState.selectedTimeTable,
+                        selectTimeTable: appState.selectTimeTable,
                         startPersonal: appState.startPersonal,
                         startPersonalSetting: appState.startPersonalSetting,
                         startMap: appState.startMap,
@@ -298,6 +303,18 @@ class ApplicationState extends ChangeNotifier {
     savePreviousState();
     _bodyState = ApplicationBodyState.timetable;
     notifyListeners();
+  }
+
+  void startEditTimeTable() {
+    print("EditTimaTable");
+    savePreviousState();
+    _bodyState = ApplicationBodyState.timetable_edit;
+    notifyListeners();
+  }
+
+  Schedule? selectedTimeTable;
+  void selectTimeTable(Schedule? sc){
+    selectedTimeTable = sc;
   }
 
   void startPersonal() {

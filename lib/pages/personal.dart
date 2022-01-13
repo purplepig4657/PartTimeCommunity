@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class Personal extends StatefulWidget {
   const Personal({Key? key,
@@ -126,6 +128,9 @@ class PersonalSetting extends StatefulWidget {
 
 class _PersonalSettingState extends State<PersonalSetting> {
 
+  String? email = FirebaseAuth.instance.currentUser!.email;
+
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -186,21 +191,22 @@ class _PersonalSettingState extends State<PersonalSetting> {
               height: 15,
             ),
             Column(
-              children: const <Widget>[
+              children: <Widget>[
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15.0),
-                  child: TextField(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: TextFormField(
+                      initialValue: email,
                       keyboardType: TextInputType.multiline,
                       maxLines: null,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: '이메일을 입력하세요',
                       )),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.0),
                   child: TextField(
                       keyboardType: TextInputType.multiline,
@@ -210,10 +216,10 @@ class _PersonalSettingState extends State<PersonalSetting> {
                         hintText: '전화번호를 입력하세요',
                       )),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                 ),
-                Padding(
+                const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 15.0),
                   child: TextField(
                       keyboardType: TextInputType.multiline,
@@ -230,7 +236,9 @@ class _PersonalSettingState extends State<PersonalSetting> {
                 (padding: const EdgeInsets.all(30.0),
                 primary: Colors.red,
                 textStyle: const TextStyle(fontSize:15),),
-              onPressed: () {},
+              onPressed: () {
+
+              },
               child: const Text('수정 완료'),
             ),],
         ),

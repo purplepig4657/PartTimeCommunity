@@ -7,6 +7,7 @@ import 'pages/personal.dart';
 import 'pages/map.dart';
 import 'pages/review.dart';
 import 'pages/write_review.dart';
+import 'pages/timetable.dart';
 
 
 enum ApplicationBodyState {
@@ -20,6 +21,7 @@ enum ApplicationBodyState {
   review,
   message,
   timetable,
+  timetable_edit,
   personal,
   personal_setting,
   map
@@ -39,6 +41,9 @@ class ScreenBody extends StatelessWidget {
     required this.selectedContent,
     required this.startMessage,
     required this.startTimetable,
+    required this.startEditTimeTable,
+    required this.selectedTimeTable,
+    required this.selectTimeTable,
     required this.startPersonal,
     required this.startPersonalSetting,
     required this.startMap,
@@ -61,6 +66,9 @@ class ScreenBody extends StatelessWidget {
   final BoardContent selectedContent;
   final void Function() startMessage;
   final void Function() startTimetable;
+  final void Function() startEditTimeTable;
+  final Schedule? selectedTimeTable;
+  final void Function(Schedule? sc) selectTimeTable;
   final void Function() startPersonal;
   final void Function() startPersonalSetting;
   final void Function() startMap;
@@ -69,7 +77,6 @@ class ScreenBody extends StatelessWidget {
   final List<ReviewContent> reviewContent;
   final void Function() startPrevious;
   final void Function() signOut;
-
 
   @override
   Widget build(BuildContext context) {
@@ -81,9 +88,9 @@ class ScreenBody extends StatelessWidget {
           children: [Text("Message"),],
         );
       case ApplicationBodyState.timetable:
-        return Row(
-          children: [Text("Timetable"),],
-        );
+        return TimeTable(startEditTimeTable: startEditTimeTable, selectTimeTable: selectTimeTable);
+      case ApplicationBodyState.timetable_edit:
+        return EditTimeContent(selectedTimeTable, startPrevious);
       case ApplicationBodyState.personal:
         return Personal(signOut: signOut,
           startPersonalSetting: startPersonalSetting,);
