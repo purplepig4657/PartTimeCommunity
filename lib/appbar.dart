@@ -67,6 +67,11 @@ class TitleNotifier extends StatelessWidget {
           '개인정보',
           style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
         );
+      case ApplicationBodyState.personal_setting:
+        return const Text(
+          '개인정보 수정',
+          style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+        );
       case ApplicationBodyState.map:
         return const Text(
           '후기지도',

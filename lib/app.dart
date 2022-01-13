@@ -77,6 +77,7 @@ class HomePage extends StatelessWidget {
                         startMessage: appState.startMessage,
                         startTimetable: appState.startTimetable,
                         startPersonal: appState.startPersonal,
+                        startPersonalSetting: appState.startPersonalSetting,
                         startMap: appState.startMap,
                         startReview: appState.startReview,
                         reviewContent: appState.reviewContent,
@@ -303,6 +304,13 @@ class ApplicationState extends ChangeNotifier {
     print("Personal");
     savePreviousState();
     _bodyState = ApplicationBodyState.personal;
+    notifyListeners();
+  }
+
+  void startPersonalSetting() {
+    print("PersonalSetting");
+    savePreviousState();
+    _bodyState = ApplicationBodyState.personal_setting;
     notifyListeners();
   }
 

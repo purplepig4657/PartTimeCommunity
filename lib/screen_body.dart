@@ -21,6 +21,7 @@ enum ApplicationBodyState {
   message,
   timetable,
   personal,
+  personal_setting,
   map
 }
 
@@ -39,6 +40,7 @@ class ScreenBody extends StatelessWidget {
     required this.startMessage,
     required this.startTimetable,
     required this.startPersonal,
+    required this.startPersonalSetting,
     required this.startMap,
     required this.startReview,
     required this.startWriteReview,
@@ -60,6 +62,7 @@ class ScreenBody extends StatelessWidget {
   final void Function() startMessage;
   final void Function() startTimetable;
   final void Function() startPersonal;
+  final void Function() startPersonalSetting;
   final void Function() startMap;
   final void Function() startReview;
   final void Function() startWriteReview;
@@ -82,7 +85,10 @@ class ScreenBody extends StatelessWidget {
           children: [Text("Timetable"),],
         );
       case ApplicationBodyState.personal:
-        return Personal(signOut: signOut,);
+        return Personal(signOut: signOut,
+          startPersonalSetting: startPersonalSetting,);
+      case ApplicationBodyState.personal_setting:
+        return PersonalSetting();
       case ApplicationBodyState.map:
         return Map(startReview: startReview,);
       case ApplicationBodyState.review:
@@ -145,9 +151,33 @@ class Home extends StatelessWidget {
             image: AssetImage('images/map.jpg'),
           ),
         ),
+        /*
+        ElevatedButton(
+            style: ElevatedButton.styleFrom(shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30.0),
+            ),primary: const Color(0xffFF6280), // background// foreground
+            ),
+            child: Row(
+              children: const [
+                Icon(Icons.search),
+                SizedBox(width: 10.0,),
+                Text('동네 찾기'),
+              ],
+            ),
+            onPressed: () {
+              ScaffoldMessenger.of(context).showSnackBar(
+                const SnackBar(
+                  content: Text('동네 찾기 성공!',
+                    textAlign: TextAlign.center,
+                  ),
+                  duration: Duration(seconds: 2),
+                ),
+              );
+            }),
         const SizedBox(
           height: 5.0,
         ),
+        */
         Container(
           padding: const EdgeInsets.fromLTRB(20.0, 20.0, 0.0, 0.0),
           child: Row(
