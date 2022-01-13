@@ -44,9 +44,9 @@ class MyPage extends StatelessWidget {
                 width: 10.0,
               ),
               Text(
-                '내가 올린 게시글',
+                '회원정보 수정',
                 style:
-                    TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
               ),
             ],
           ),
@@ -68,7 +68,7 @@ class MyPage extends StatelessWidget {
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         image: DecorationImage(
-                            image: AssetImage('images/cat.jpg'),
+                            image: AssetImage('images/katalk.jpg'),
                             fit: BoxFit.fill),
                       ),
                     ),
@@ -89,7 +89,7 @@ class MyPage extends StatelessWidget {
                                   color: Color(0xffFF6280),
                                   onPressed: () {}),
                               Text(
-                                '수정완료',
+                                '이름수정',
                                 style: TextStyle(
                                     fontSize: 15, fontWeight: FontWeight.bold),
                               ),
@@ -102,7 +102,7 @@ class MyPage extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: 50,
+                height: 30,
               ),
               Column(
                 children: <Widget>[
@@ -144,7 +144,14 @@ class MyPage extends StatelessWidget {
                   )
                 ],
               ),
-            ],
+              TextButton(
+                style: TextButton.styleFrom
+                  (padding: const EdgeInsets.all(30.0),
+                  primary: Colors.red,
+                  textStyle: const TextStyle(fontSize:15),),
+                onPressed: () {},
+                child: const Text('수정 완료'),
+              ),],
           ),
         ),
       ),
